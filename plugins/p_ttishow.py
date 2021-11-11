@@ -26,7 +26,7 @@ async def save_group(bot, message):
             ]]
             reply_markup=InlineKeyboardMarkup(buttons)
             k = await message.reply(
-                text='<b>CHAT NOT ALLOWED 🐞\n\nMy admins has restricted me from working here ! If you want to know more about it contact support..</b>',
+                text='<b>CHAT NOT ALLOWED 🐞\n\nමට මේකෙ message දාන්න බෑ ( Restrickted )</b>',
                 reply_markup=reply_markup,
             )
 
@@ -37,12 +37,12 @@ async def save_group(bot, message):
             await bot.leave_chat(message.chat.id)
             return
         buttons = [[
-            InlineKeyboardButton('ℹ️ Help', url=f"https://t.me/{temp.U_NAME}?start=help"),
-            InlineKeyboardButton('📢 Updates', url='https://t.me/TeamEvamaria')
+            InlineKeyboardButton('ℹ️ උදව්', url=f"https://t.me/{temp.U_NAME}?start=help"),
+            InlineKeyboardButton('📢 යාවත්කාලීන කිරීම්', url='https://t.me/sinhalafilmsgo')
         ]]
         reply_markup=InlineKeyboardMarkup(buttons)
         await message.reply_text(
-            text=f"<b>Thankyou For Adding Me In {message.chat.title} ❣️\n\nIf you have any questions & doubts about using me contact support.</b>",
+            text=f"<b>මාව මේකට add කරාට ස්තූතියි👉 {message.chat.title} ❣️\n\n👨</b>",
             reply_markup=reply_markup)
     else:
         for u in message.new_chat_members:
@@ -57,7 +57,7 @@ async def save_group(bot, message):
 @Client.on_message(filters.command('leave') & filters.user(ADMINS))
 async def leave_a_chat(bot, message):
     if len(message.command) == 1:
-        return await message.reply('Give me a chat id')
+        return await message.reply('මට chat id එක දෙන්න')
     chat = message.command[1]
     try:
         chat = int(chat)
@@ -70,7 +70,7 @@ async def leave_a_chat(bot, message):
         reply_markup=InlineKeyboardMarkup(buttons)
         await bot.send_message(
             chat_id=chat,
-            text='<b>Hello Friends, \nMy admin has told me to leave from group so i go! If you wanna add me again contact my support group.</b>',
+            text='<b>හායි කස්ටිය.. මගෙ adminල මාව මේකෙ වැඩකරන එක තහනම් කරා... වැඩිදුර තොරතුරු @sinhalafilmsgo එකෙන් දැනගන්න</b>',
             reply_markup=reply_markup,
         )
 
@@ -88,19 +88,19 @@ async def disable_chat(bot, message):
         chat = message.text.split(None, 2)[1]
     else:
         chat = message.command[1]
-        reason = "No reason Provided"
+        reason = "හේතුවක් දෙන්න"
     try:
         chat_ = int(chat)
     except:
-        return await message.reply('Give Me A Valid Chat ID')
+        return await message.reply('වලංගු chat id එකක් දෙන්න')
     cha_t = await db.get_chat(int(chat_))
     if not cha_t:
-        return await message.reply("Chat Not Found In DB")
+        return await message.reply("ඒ chat එක මගෙ database එකේ නෑ")
     if cha_t['is_disabled']:
-        return await message.reply(f"This chat is already disabled:\nReason-<code> {cha_t['reason']} </code>")
+        return await message.reply(f"මේ chat එක දැනටමත් disable කරල තියෙන්නෙ:\nReason-<code> {cha_t['reason']} </code>")
     await db.disable_chat(int(chat_), reason)
     temp.BANNED_CHATS.append(int(chat_))
-    await message.reply('Chat Succesfully Disabled')
+    await message.reply('හරි chat එක disable කරා')
     try:
         buttons = [[
             InlineKeyboardButton('Support', url=f'https://t.me/{SUPPORT_CHAT}')
@@ -108,35 +108,35 @@ async def disable_chat(bot, message):
         reply_markup=InlineKeyboardMarkup(buttons)
         await bot.send_message(
             chat_id=chat_, 
-            text=f'<b>Hello Friends, \nMy admin has told me to leave from group so i go! If you wanna add me again contact my support group.</b> \nReason : <code>{reason}</code>',
+            text=f'<b>හායි කස්ටිය.. මගෙ adminල මාව මේකෙ වැඩකරන එක තහනම් කරා... වැඩිදුර තොරතුරු @sinhalafilmsgo එකෙන් දැනගන්න.</b> \nහේතුව : <code>{reason}</code>',
             reply_markup=reply_markup)
         await bot.leave_chat(chat_)
     except Exception as e:
-        await message.reply(f"Error - {e}")
+        await message.reply(f"ප්‍රශ්නයක් - {e}")
 
 
 @Client.on_message(filters.command('enable') & filters.user(ADMINS))
 async def re_enable_chat(bot, message):
     if len(message.command) == 1:
-        return await message.reply('Give me a chat id')
+        return await message.reply('මට chat id එක දෙන්න')
     chat = message.command[1]
     try:
         chat_ = int(chat)
     except:
-        return await message.reply('Give Me A Valid Chat ID')
+        return await message.reply('වලංගු chat id එකක් දෙන්න')
     sts = await db.get_chat(int(chat))
     if not sts:
-        return await message.reply("Chat Not Found In DB !")
+        return await message.reply("ඒ chat එක මගෙ database එකේ නෑ")
     if not sts.get('is_disabled'):
-        return await message.reply('This chat is not yet disabled.')
+        return await message.reply('මේක තාම disable කරල නෑනෙ')
     await db.re_enable_chat(int(chat_))
     temp.BANNED_CHATS.remove(int(chat_))
-    await message.reply("Chat Succesfully re-enabled")
+    await message.reply("හරි ආයෙ enable කරා")
 
 
 @Client.on_message(filters.command('stats') & filters.incoming)
 async def get_ststs(bot, message):
-    rju = await message.reply('Fetching stats..')
+    rju = await message.reply('තත්වය හොයන ගමන්...')
     total_users = await db.total_users_count()
     totl_chats = await db.total_chat_count()
     files = await Media.count_documents()
@@ -161,23 +161,23 @@ async def gen_invite(bot, message):
     try:
         link = await bot.create_chat_invite_link(chat)
     except ChatAdminRequired:
-        return await message.reply("Invite Link Generation Failed, Iam Not Having Sufficient Rights")
+        return await message.reply("බෑ... මට නිසි permission නෑ")
     except Exception as e:
-        return await message.reply(f'Error {e}')
-    await message.reply(f'Here is your Invite Link {link.invite_link}')
+        return await message.reply(f'ප්‍රශ්නයක් {e}')
+    await message.reply(f'මෙන්න ඔයාගෙ invite link එක {link.invite_link}')
 
 @Client.on_message(filters.command('ban') & filters.user(ADMINS))
 async def ban_a_user(bot, message):
     # https://t.me/GetTGLink/4185
     if len(message.command) == 1:
-        return await message.reply('Give me a user id / username')
+        return await message.reply('මට user id එකක් හරි usename එකක් හරි දෙන්න')
     r = message.text.split(None)
     if len(r) > 2:
         reason = message.text.split(None, 2)[2]
         chat = message.text.split(None, 2)[1]
     else:
         chat = message.command[1]
-        reason = "No reason Provided"
+        reason = "හේතුවක් නෑනෙ.. හේතුව දෙන්න"
     try:
         chat = int(chat)
     except:
@@ -185,15 +185,15 @@ async def ban_a_user(bot, message):
     try:
         k = await bot.get_users(chat)
     except PeerIdInvalid:
-        return await message.reply("This is an invalid user, make sure ia have met him before.")
+        return await message.reply("මෙහෙම user කෙනෙක් මට හොයාගන්න බෑ... ආයෙ හරියට බලන්න.")
     except IndexError:
-        return await message.reply("This might be a channel, make sure its a user.")
+        return await message.reply("sure ද මේ සියල්ල හරි කියලා? ... මේ user Channel / group එකේ ඉන්නවද?")
     except Exception as e:
         return await message.reply(f'Error - {e}')
     else:
         jar = await db.get_ban_status(k.id)
         if jar['is_banned']:
-            return await message.reply(f"{k.mention} is already banned\nReason: {jar['ban_reason']}")
+            return await message.reply(f"{k.mention} මෙයා දැනටමත් ban කරල තියෙන්නෙ\nහේතුව: {jar['ban_reason']}")
         await db.ban_user(k.id, reason)
         temp.BANNED_USERS.append(k.id)
         await message.reply(f"Succesfully banned {k.mention}")
@@ -203,14 +203,14 @@ async def ban_a_user(bot, message):
 @Client.on_message(filters.command('unban') & filters.user(ADMINS))
 async def unban_a_user(bot, message):
     if len(message.command) == 1:
-        return await message.reply('Give me a user id / username')
+        return await message.reply('මට user id එකක් හරි usename එකක් හරි දෙන්න')
     r = message.text.split(None)
     if len(r) > 2:
         reason = message.text.split(None, 2)[2]
         chat = message.text.split(None, 2)[1]
     else:
         chat = message.command[1]
-        reason = "No reason Provided"
+        reason = "හේතුවක් නෑනෙ.. හේතුව දෙන්න"
     try:
         chat = int(chat)
     except:
@@ -218,27 +218,27 @@ async def unban_a_user(bot, message):
     try:
         k = await bot.get_users(chat)
     except PeerIdInvalid:
-        return await message.reply("This is an invalid user, make sure ia have met him before.")
+        return await message.reply("මෙහෙම user කෙනෙක් මට හොයාගන්න බෑ... ආයෙ හරියට බලන්න.")
     except IndexError:
-        return await message.reply("Thismight be a channel, make sure its a user.")
+        return await message.reply("මෙහෙම user කෙනෙක් මට හොයාගන්න බෑ... ආයෙ හරියට බලන්න.( User or Bot )")
     except Exception as e:
         return await message.reply(f'Error - {e}')
     else:
         jar = await db.get_ban_status(k.id)
         if not jar['is_banned']:
-            return await message.reply(f"{k.mention} is not yet banned.")
+            return await message.reply(f"{k.mention} තාම ban කරල නෑ.")
         await db.remove_ban(k.id)
         temp.BANNED_USERS.remove(k.id)
-        await message.reply(f"Succesfully unbanned {k.mention}")
+        await message.reply(f" ban කරා {k.mention}")
 
 
     
 @Client.on_message(filters.command('users') & filters.user(ADMINS))
 async def list_users(bot, message):
     # https://t.me/GetTGLink/4184
-    raju = await message.reply('Getting List Of Users')
+    raju = await message.reply('පරිශීලකයන් සෙට් එක ගන්නවා')
     users = await db.get_all_users()
-    out = "Users Saved In DB Are:\n\n"
+    out = "මගෙ DB එකේ ඉන්න Users ල:\n\n"
     async for user in users:
         out += f"<a href=tg://user?id={user['id']}>{user['name']}</a>\n"
     try:
@@ -246,13 +246,13 @@ async def list_users(bot, message):
     except MessageTooLong:
         with open('users.txt', 'w+') as outfile:
             outfile.write(out)
-        await message.reply_document('users.txt', caption="List Of Users")
+        await message.reply_document('users.txt', caption="Users List එක")
 
 @Client.on_message(filters.command('chats') & filters.user(ADMINS))
 async def list_chats(bot, message):
-    raju = await message.reply('Getting List Of chats')
+    raju = await message.reply('Chat සෙට් එක ගන්නව')
     chats = await db.get_all_chats()
-    out = "Chats Saved In DB Are:\n\n"
+    out = "මගෙ DB එකේ තියෙන Chats:\n\n"
     async for chat in chats:
         out += f"**Title:** `{chat['title']}`\n**- ID:** `{chat['id']}`\n"
     try:
@@ -260,4 +260,4 @@ async def list_chats(bot, message):
     except MessageTooLong:
         with open('chats.txt', 'w+') as outfile:
             outfile.write(out)
-        await message.reply_document('chats.txt', caption="List Of Chats")
+        await message.reply_document('chats.txt', caption="Chat list එක")
