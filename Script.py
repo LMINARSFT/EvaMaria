@@ -1,84 +1,73 @@
 class script(object):
     START_TXT = """𝙷𝙴𝙻𝙾 {},
-𝙼𝚈 𝙽𝙰𝙼𝙴 𝙸𝚂 <a href=https://t.me/{}>{}</a>, 𝙸 𝙲𝙰𝙽 𝙿𝚁𝙾𝚅𝙸𝙳𝙴 𝙼𝙾𝚅𝙸𝙴𝚂, 𝙹𝚄𝚂𝚃 𝙰𝙳𝙳 𝙼𝙴 𝚃𝙾 𝚈𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿 𝙰𝙽𝙳 𝙴𝙽𝙹𝙾𝚈 😍"""
-    HELP_TXT = """𝙷𝙴𝚈 {}
-𝙷𝙴𝚁𝙴 𝙸𝚂 𝚃𝙷𝙴 𝙷𝙴𝙻𝙿 𝙵𝙾𝚁 𝙼𝚈 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂."""
-    ABOUT_TXT = """✯ 𝙼𝚈 𝙽𝙰𝙼𝙴: {}
-✯ 𝙲𝚁𝙴𝙰𝚃𝙾𝚁: <a href=https://t.me/TeamEvamaria>Team Eva Maria</a>
+𝙼𝚈 𝙽𝙰𝙼𝙴 𝙸𝚂 <a href=https://t.me/{}>{}</a>, මට පුලුවන් ඔයාලට සින්හල මූවිස් දෙන්න....
+මගෙ Main group එක : @sinhalafilmsgo
+මාව group එකකට add කරල admin දෙන්න... එච්චරයි...ඔයාල දාන නමට ෆිල්ම් තිබ්බොත් මම දෙන්නම්"""
+    HELP_TXT = """හායි {}
+මේ තියෙන්නෙ මගෙ commands වලට අදාල සප් එක"""
+    ABOUT_TXT = """✯ මගෙ නම: {}
+✯ 𝙲𝚁𝙴𝙰𝚃𝙾𝚁: <a href=https://t.me/sinhalafilmsgo>SL Media Network ( Infine Pictures )</a>
 ✯ 𝙻𝙸𝙱𝚁𝙰𝚁𝚈: 𝙿𝚈𝚁𝙾𝙶𝚁𝙰𝙼
 ✯ 𝙻𝙰𝙽𝙶𝚄𝙰𝙶𝙴: 𝙿𝚈𝚃𝙷𝙾𝙽 𝟹
 ✯ 𝙳𝙰𝚃𝙰 𝙱𝙰𝚂𝙴: 𝙼𝙾𝙽𝙶𝙾 𝙳𝙱
 ✯ 𝙱𝙾𝚃 𝚂𝙴𝚁𝚅𝙴𝚁: 𝙷𝙴𝚁𝙾𝙺𝚄
 ✯ 𝙱𝚄𝙸𝙻𝙳 𝚂𝚃𝙰𝚃𝚄𝚂: v1.0.1 [ 𝙱𝙴𝚃𝙰 ]"""
     SOURCE_TXT = """<b>NOTE:</b>
-- Eva Maria is a open source project. 
-- Source - https://github.com/EvamariaTG/EvaMaria  
+- Credits - EvaMaria Developer"""
+    
+    MANUELFILTER_TXT = """උදවු: <b>ෆිල්ටර්</b>
 
-<b>DEVS:</b>
-- <a href=https://t.me/TeamEvamaria>Team Eva Maria</a>"""
-    MANUELFILTER_TXT = """Help: <b>Filters</b>
-
-- Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message
+- මේකෙන් ඔයාලට පුලුවන් user කෙනෙක් දාන message එකකට auto reply වෙන්න හදන්න
 
 <b>NOTE:</b>
-1. eva maria should have admin privillage.
-2. only admins can add filters in a chat.
-3. alert buttons have a limit of 64 characters.
+1. බොට්ට ඇඩ්මින් දෙන්න ඕනෙ
+2. ඇඩ්මින්ලට විතරයි ෆිල්ටර් දාන්න පුලුවන්
+3. Alert එකක් අකුරු 64 යි දාන්න පුලුවන්
 
-<b>Commands and Usage:</b>
-• /filter - <code>add a filter in chat</code>
-• /filters - <code>list all the filters of a chat</code>
-• /del - <code>delete a specific filter in chat</code>
-• /delall - <code>delete the whole filters in a chat (chat owner only)</code>"""
-    BUTTON_TXT = """Help: <b>Buttons</b>
+<b>විධාන හා භාවිතයන්:</b>
+• /filter - <code>Group එකට filter එකක් add කිරීමට</code>
+• /filters - <code>Group එකක ඇති සියලු ෆිල්ටර් පෙන්වීමට</code>
+• /del - <code>යම් ෆිල්ටර් එකක් delete කිරීමට</code>
+• /delall - <code>සියලුම ෆිල්ටර් කිරීමට ( මේක කරන්න පුලුවන් group එකේ Ownerට විතරයි )</code>"""
+    BUTTON_TXT = """උදවු: <b>Buttons</b>
 
-- Eva Maria Supports both url and alert inline buttons.
-
-<b>NOTE:</b>
-1. Telegram will not allows you to send buttons without any content, so content is mandatory.
-2. Eva Maria supports buttons with any telegram media type.
-3. Buttons should be properly parsed as markdown format
+-මෙයා Url and Inline කියන බටන් වර්ග දෙකටම support කරනව
 
 <b>URL buttons:</b>
-<code>[Button Text](buttonurl:https://t.me/EvaMariaBot)</code>
+<code>[Button Text](buttonurl:https://t.me/sinhalafilmsgo)</code>
 
 <b>Alert buttons:</b>
-<code>[Button Text](buttonalert:This is an alert message)</code>"""
-    AUTOFILTER_TXT = """Help: <b>Auto Filter</b>
+<code>[Button Text](buttonalert:මෙතන ඔයාගෙ alert message එක)</code>"""
+    AUTOFILTER_TXT = """උදවු: <b>Auto Filter</b>
 
 <b>NOTE:</b>
-1. Make me the admin of your channel if it's private.
-2. make sure that your channel does not contains camrips, porn and fake files.
-3. Forward the last message to me with quotes.
- I'll add all the files in that channel to my db."""
-    CONNECTION_TXT = """Help: <b>Connections</b>
+1. මාව channel එකේ ඇඩ්මින් කරන්න
+2. ඔයාගෙ channel එක පිරිසිදු ෆයිල් තියෙන channel එකක් විය යුතුයි ( වැරදි format වගේ, Invalid extentions තියෙන්න බෑ)
+3. මට ඔයා ඒ channel එකට දාපු අන්තිම message එක එවන්න
+මම සේරම ෆයිල් ටික මගෙ DB එකට add කරගන්නම්"""
+    CONNECTION_TXT = """උදවු: <b>Connections</b>
 
-- Used to connect bot to PM for managing filters 
-- it helps to avoid spamming in groups.
-
-<b>NOTE:</b>
-1. Only admins can add a connection.
-2. Send <code>/connect</code> for connecting me to ur PM
-
-<b>Commands and Usage:</b>
-• /connect  - <code>connect a particular chat to your PM</code>
-• /disconnect  - <code>disconnect from a chat</code>
-• /connections - <code>list all your connections</code>"""
-    EXTRAMOD_TXT = """Help: <b>Extra Modules</b>
+- ෆිල්ටර් කරන්න බොට්ව PM එකට connect කරන එක තමයි මේකෙන් කරන්නෙ
+- Grou[ වල spam ගහන එක වළක්වා ගන්න පුලුවන් මේකෙන්
 
 <b>NOTE:</b>
-these are the extra features of Eva Maria
+1. Connection එකක් add කරන්න පුලුවන් admin කෙනෙක් ට විතරයි
+2. එවන්න මේ විදිහට👉 <code>/connect</code> ඔයාගෙ group එක connect කරන්න ඕනෙනම්
 
-<b>Commands and Usage:</b>
-• /id - <code>get id of a specifed user.</code>
-• /info  - <code>get information about a user.</code>
-• /imdb  - <code>get the film information from IMDb source.</code>
-• /search  - <code>get the film information from various sources.</code>"""
-    ADMIN_TXT = """Help: <b>Admin mods</b>
-
-<b>NOTE:</b>
-This module only works for my admins
-
+<b>විධාන හා භාවිතයන්:</b>
+• /connect  - <code>යම් chat එකක් ඔයාගෙ PM එකට connect කරනව</code>
+• /disconnect  - <code>යම් chat එකක් disconnect කරනව්</code>
+• /connections - <code>ඔයාගෙ සියලුම connections ටික ලිස්ට් එකකින් පෙන්නනව</code>"""
+    EXTRAMOD_TXT = """Help: <b>අමතර ගැජමැටික් ටිකක්</b>
+    
+<b>විධාන හා භාවිතයන්:</b>
+• /id - <code>යම් user කෙනෙක්ගෙ id එක ගන්න</code>
+• /info  - <code>යම් user කෙනෙක් ගැන තොරතුරු ගන්න</code>
+• /imdb  - <code>IMDb එකෙන් ෆිල්ම් එක ගැන තොරතුරු ගන්න</code>
+• /search  - <code>තවත් විවිධ මූලාශ්‍ර වලින් ෆිල්ම් එක ගැන තොරතුරු ගන්න</code>"""
+    ADMIN_TXT = """උදවු: <b>මගෙ ඇඩ්මින්ලට දීල තියෙන ගැජමැටික්ස්</b>
+    
+-------මේක ඔයාලට වැදගත් නෑ👇👇👇👇👇 ----------
 <b>Commands and Usage:</b>
 • /logs - <code>to get the rescent errors</code>
 • /stats - <code>to get status of files in db.</code>
