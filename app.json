@@ -15,19 +15,19 @@
       "index",
       "inline"
     ],
-    "website": "https://github.com/EvamariaTG/EvaMaria",
-    "repository": "https://github.com/EvamariaTG/EvaMaria",
+    "website": "https://github.com/LMINARSFT/EvaMaria",
+    "repository": "https://github.com/LMINARSFT/EvaMaria",
     "env": {
         "BOT_TOKEN": {
-            "description": "Your bot token.",
+            "description": "ඔයාගෙ බොට්ගෙ බොට් ටෝකන් එක",
             "required": true
         },
         "API_ID": {
-            "description": "Get this value from https://my.telegram.org",
+            "description": "මේක ගන්න https://my.telegram.org එකෙන්",
             "required": true
         },
         "API_HASH": {
-            "description": "Get this value from https://my.telegram.org",
+            "description": "මේක ගන්න https://my.telegram.org එකෙන්",
             "required": true
         },
         "CHANNELS": {
@@ -35,15 +35,15 @@
             "required": false
         },
         "ADMINS": {
-            "description": "Username or ID of Admin. Separate multiple Admins by space.",
+            "description": "ඇඩ්මින් ගෙ Username or Id එක",
             "required": true
         },
         "PICS": {
-            "description": "Add some telegraph link of pictures .",
+            "description": "බොට් ෆිල්ම් එක දෙද්දි පේන්න පින්තූරයක් ( Telegraph ) .",
             "required": false
         },
         "LOG_CHANNEL": {
-            "description": "Bot Logs,Give a channel id with -100xxxxxxx",
+            "description": "බොට්ගෙ ලොග් එක විදිහට channel එකක id එකක් -100xxxxxxx",
             "required": true
         },
         "SUPPORT_CHAT": {
