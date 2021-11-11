@@ -9,7 +9,7 @@ logger.setLevel(logging.ERROR)
 async def addconnection(client,message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
-        return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
+        return await message.reply(f"ඔයා anonymous admin දාගෙන ඉන්නෙ.... මගෙ Private Chat එකට ඇවිත් /connect ගහල channel එක connect කරන්න {message.chat.id}")
     chat_type = message.chat.type
 
     if chat_type == "private":
@@ -17,9 +17,9 @@ async def addconnection(client,message):
             cmd, group_id = message.text.split(" ", 1)
         except:
             await message.reply_text(
-                "<b>Enter in correct format!</b>\n\n"
+                "<b>නිවැරදි අනුපිළිවෙල භාවිත කරන්න</b>\n\n"
                 "<code>/connect groupid</code>\n\n"
-                "<i>Get your Group id by adding this bot to your group and use  <code>/id</code></i>",
+                "<i>Gඔයාගෙ group එකෙ id ගන්න මේ බොට් ඔයාගෙ එකට  add කරන්න  <code>/id</code></i>",
                 quote=True
             )
             return
@@ -34,12 +34,12 @@ async def addconnection(client,message):
             and st.status != "creator"
             and str(userid) not in ADMINS
         ):
-            await message.reply_text("You should be an admin in Given group!", quote=True)
+            await message.reply_text("ඔයා මේ දුන්න group එකේ admin ඉන්න ඕනෙ අනිවාරෙන්", quote=True)
             return
     except Exception as e:
         logger.exception(e)
         await message.reply_text(
-            "Invalid Group ID!\n\nIf correct, Make sure I'm present in your group!!",
+            "Group Id එක වැරදි\n\nඑහෙමත් නැත්නම් මම ඒ group එකේ නෑ.. මාව Group එකට add කරල උත්සාහ කරන්න",
             quote=True,
         )
 
@@ -53,26 +53,26 @@ async def addconnection(client,message):
             addcon = await add_connection(str(group_id), str(userid))
             if addcon:
                 await message.reply_text(
-                    f"Sucessfully connected to **{title}**\nNow manage your group from my pm !",
+                    f"Sucessfully connected to **{title}**\nදැන් ඔයාට ඔයාගෙ group එක මේ private chat එකේ ඉදන් පාලනය කරන්න පුලුවන්",
                     quote=True,
                     parse_mode="md"
                 )
                 if chat_type in ["group", "supergroup"]:
                     await client.send_message(
                         userid,
-                        f"Connected to **{title}** !",
+                        f"මේකට connect වුනා👉 **{title}** !",
                         parse_mode="md"
                     )
             else:
                 await message.reply_text(
-                    "You're already connected to this chat!",
+                    "මේකට කලින්ම connect කරල තිබිල තියෙන්නෙ🤗",
                     quote=True
                 )
         else:
-            await message.reply_text("Add me as an admin in group", quote=True)
+            await message.reply_text("මාව group එකේ admin කරන්න", quote=True)
     except Exception as e:
         logger.exception(e)
-        await message.reply_text('Some error occured! Try again later.', quote=True)
+        await message.reply_text('අවුලක් වුනා.. ටික වෙලාවකින් නැවත උත්සාහ කරන්න', quote=True)
         return
 
 
@@ -80,11 +80,11 @@ async def addconnection(client,message):
 async def deleteconnection(client,message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
-        return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
+        return await message.reply(f"ඔයා anonymous admin දාගෙන ඉන්නෙ මගෙ private chat එකට ඇවිත් /connect ගහල group එක connect කරන්න {message.chat.id} ")
     chat_type = message.chat.type
 
     if chat_type == "private":
-        await message.reply_text("Run /connections to view or disconnect from groups!", quote=True)
+        await message.reply_text("මාව groupp එකකින් disconnect කරන්නයි දැනට connect වෙලා තියෙන grou /channel ටික බලාගන්නයි /connections දෙන්න​", quote=True)
 
     elif chat_type in ["group", "supergroup"]:
         group_id = message.chat.id
@@ -99,9 +99,9 @@ async def deleteconnection(client,message):
 
         delcon = await delete_connection(str(userid), str(group_id))
         if delcon:
-            await message.reply_text("Successfully disconnected from this chat", quote=True)
+            await message.reply_text("මේ chat එකෙන් disconnect කරා, quote=True)
         else:
-            await message.reply_text("This chat isn't connected to me!\nDo /connect to connect.", quote=True)
+            await message.reply_text("මේක මට කලින් connect කරල තිබ්බ එකක් නෙවේ..\nConnect කරන්න ඕනනම් /connect දෙන්න", quote=True)
 
 
 
@@ -112,7 +112,7 @@ async def connections(client,message):
     groupids = await all_connections(str(userid))
     if groupids is None:
         await message.reply_text(
-            "There are no active connections!! Connect to some groups first.",
+            "කිසිම group/channel එකකට connect කරලා නෑ.. ඔයා මුලින්ම මාව group / channel එකකට  connect කරලා ඉන්න",
             quote=True
         )
         return
@@ -134,12 +134,12 @@ async def connections(client,message):
             pass
     if buttons:
         await message.reply_text(
-            "Your connected group details ;\n\n",
+            "දැනට තියෙන Connections ;\n\n",
             reply_markup=InlineKeyboardMarkup(buttons),
             quote=True
         )
     else:
         await message.reply_text(
-            "There are no active connections!! Connect to some groups first.",
+            "කිසිම group / channel එකකට connect කරලා නෑ.. ඔයා මුලින්ම මාව group / channel එකකට connect කරලා ඉන්න",
             quote=True
         )
